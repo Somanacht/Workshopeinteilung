@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Zuteilung</title>
+    <script>
+        // Workshop data from Excel file in JSON format
+        const workshopData = [
+
+            {
+                kürzel: "Abs",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Kre",
+                zeitfenster1: "Leitung One Note Teams",
+                zeitfenster2: "Leitung One Note Teams",
+                zeitfenster3: "Bitte selbst auswählen!"
+            },
+            {
+                kürzel: "Ber",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Jeder kann kreativ sein - MS2",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Pic",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Canva und Schubu - 3a",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Eb",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Sp",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Wim",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "Digitaler Potpourri - 3c",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Schw",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "Le",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Handy / Ipad - MS1",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Gra",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Pf",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Handy / Ipad - MS1"
+            },
+            {
+                kürzel: "Kim",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Jeder kann kreativ sein - MS2",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Wä",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Digitale Tools für Sprachenlehrer - 4d"
+            },
+            {
+                kürzel: "Str",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Jeder kann kreativ sein - MS2",
+                zeitfenster3: "Digitale Tools für Sprachenlehrer - 4d"
+            },
+            {
+                kürzel: "Pohl",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Jeder kann kreativ sein - MS2",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Sö",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "Handy / Ipad - MS1",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Ur",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "Leitung: Teachino",
+                zeitfenster3: "Leitung: Teachino"
+            },
+            {
+                kürzel: "Kal",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Canva und Schubu - 3a",
+                zeitfenster3: "Leitung Handy / Ipad"
+            },
+            {
+                kürzel: "Fl",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Leitung Jeder kann kreativ sein",
+                zeitfenster3: "Leitung Jeder kann kreativ sein"
+            },
+            {
+                kürzel: "Ga",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Canva und Schubu - 3a",
+                zeitfenster3: "Digitale Tools für Sprachenlehrer - 4d"
+            },
+            {
+                kürzel: "Bro",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "Jeder kann kreativ sein - MS2",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Blj",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Digitaler Potpourri - 3c",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "At",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Digitale Tools für Sprachenlehrer - 4d"
+            },
+            {
+                kürzel: "Lm",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Digitale Tools für Sprachenlehrer - 4d"
+            },
+            {
+                kürzel: "Vor",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Digitaler Potpourri - 3c",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "Ja",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Handy / Ipad - MS1",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "Fe",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "Leitung Handy / Ipad",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Gab",
+                zeitfenster1: "Leitung Digitale Tools",
+                zeitfenster2: "Canva und Schubu - 3a",
+                zeitfenster3: "Leitung Digitale Tools"
+            },
+            {
+                kürzel: "Do",
+                zeitfenster1: "Leitung Digitale Tools",
+                zeitfenster2: "Canva und Schubu - 3a",
+                zeitfenster3: "Leitung Digitale Tools"
+            },
+            {
+                kürzel: "Sl",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Digitale Tools für Sprachenlehrer - 4d"
+            },
+            {
+                kürzel: "Si",
+                zeitfenster1: "Leitung Handy / Ipad mit Schülern",
+                zeitfenster2: "Digitaler Potpourri - 3c",
+                zeitfenster3: "Digitale Tools für Sprachenlehrer - 4d"
+            },
+            {
+                kürzel: "Wu",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Für",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "Bra",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Canva und Schubu - 3a",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "Schn",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "Wal",
+                zeitfenster1: "Leitung Canva und Schubu",
+                zeitfenster2: "Leitung Canva und Schubu",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Kir",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Digitaler Potpourri - 3c",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Vo",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "At",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Canva und Schubu - 3a",
+                zeitfenster3: "Digitale Tools für Sprachenlehrer - 4d"
+            },
+            {
+                kürzel: "Pa",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Jeder kann kreativ sein - MS2",
+                zeitfenster3: "Handy / Ipad - MS1"
+            },
+            {
+                kürzel: "Hz",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "Ste",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Handy / Ipad - MS1",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Re",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Handy / Ipad - MS1",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Pum",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Va",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Zi",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Handy / Ipad - MS1"
+            },
+            {
+                kürzel: "Pfo",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "OneNote und Teams - 6b",
+                zeitfenster3: "Teachino - 6a"
+            },
+            {
+                kürzel: "Go",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Jeder kann kreativ sein - MS2",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+            {
+                kürzel: "Ro",
+                zeitfenster1: "OneNote und Teams - 6b",
+                zeitfenster2: "Canva und Schubu - 3a",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "Sch",
+                zeitfenster1: "Digitaler Potpourri - 3c",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Jeder kann kreativ sein - MS2"
+            },
+            {
+                kürzel: "Kef",
+                zeitfenster1: "Canva und Schubu - 3a",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Handy / Ipad - MS1"
+            },
+            {
+                kürzel: "Wa",
+                zeitfenster1: "Digitale Tools für Sprachenlehrer - 4d",
+                zeitfenster2: "Teachino - 6a",
+                zeitfenster3: "Digitaler Potpourri - 3c"
+            },
+        ];
+
+        function findWorkshops() {
+            const inputName = document.getElementById('nameInput').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // Clear previous results
+
+            const match = workshopData.find(entry => entry.kürzel.toLowerCase() === inputName);
+            
+            if (match) {
+                resultDiv.innerHTML = `
+                    <h3>Workshops für ${match.kürzel}:</h3>
+                    <p><strong>Zeitfenster 1:</strong> ${match.zeitfenster1}</p>
+                    <p><strong>Zeitfenster 2:</strong> ${match.zeitfenster2}</p>
+                    <p><strong>Zeitfenster 3:</strong> ${match.zeitfenster3}</p>
+                `;
+            } else {
+                resultDiv.innerHTML = '<p style="color:red;">Kein Workshop gefunden für den eingegebenen Namen.</p>';
+            }
+        }
+
+        // Function to trigger the search when Enter is pressed
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputField = document.getElementById('nameInput');
+            inputField.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    findWorkshops();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="text-align:center; padding:20px;">
+        <h1>Workshop Zuteilung</h1>
+        <p>Geben Sie den Kürzel ein, um die zugeteilten Workshops zu sehen:</p>
+        <input type="text" id="nameInput" placeholder="Kürzel eingeben" style="padding:5px; width:200px;">
+        <button onclick="findWorkshops()" style="padding:5px;">Suchen</button>
+        <div id="result" style="margin-top:20px;"></div>
+    </div>
+</body>
+</html>
